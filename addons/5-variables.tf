@@ -35,10 +35,6 @@ variable "grafana_chart_version" {
   type        = string
 }
 
-variable "karpenter_chart_version" {
-  description = "Version of the Karpenter Helm chart."
-  type        = string
-}
 
 variable "monitoring_namespace" {
   description = "Kubernetes namespace for monitoring tools."
@@ -46,11 +42,6 @@ variable "monitoring_namespace" {
   default     = "monitoring"
 }
 
-variable "karpenter_namespace" {
-  description = "Kubernetes namespace for Karpenter."
-  type        = string
-  default     = "karpenter"
-}
 
 variable "grafana_admin_password" {
   description = "Admin password for Grafana."
