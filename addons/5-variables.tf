@@ -52,3 +52,9 @@ variable "grafana_url" {
   description = "the service URL"
   type        = string
 }
+
+variable "env" {
+  description = "The environment for the deployment"
+  type        = string
+}
+
