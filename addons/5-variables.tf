@@ -57,4 +57,7 @@ variable "grafana_admin_password" {
   type        = string
 }
 
-
+variable "grafana_url" {
+  description = "the service URL"
+  type        = string
+}
