@@ -25,9 +25,35 @@ variable "eks_name" {
   type        = string
 }
 
-variable "karpenter_helm_version" {
-  description = "The version of the Karpenter Helm chart to install"
+variable "prometheus_chart_version" {
+  description = "Version of the Prometheus Helm chart."
   type        = string
-  default     = "0.4.3" # Ensure this is the latest or required version
+}
+
+variable "grafana_chart_version" {
+  description = "Version of the Grafana Helm chart."
+  type        = string
+}
+
+variable "karpenter_chart_version" {
+  description = "Version of the Karpenter Helm chart."
+  type        = string
+}
+
+variable "monitoring_namespace" {
+  description = "Kubernetes namespace for monitoring tools."
+  type        = string
+  default     = "monitoring"
+}
+
+variable "karpenter_namespace" {
+  description = "Kubernetes namespace for Karpenter."
+  type        = string
+  default     = "karpenter"
+}
+
+variable "grafana_admin_password" {
+  description = "Admin password for Grafana."
+  type        = string
 }
 
