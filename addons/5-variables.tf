@@ -57,3 +57,9 @@ variable "grafana_admin_password" {
   type        = string
 }
 
+variable "storage_class_name" {
+  description = "name of the sc"
+  type        = string
+  
+}
+
