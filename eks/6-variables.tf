@@ -39,3 +39,9 @@ variable "enable_irsa" {
   type        = bool
   default     = true
 }
+
+variable "region" {
+  description = "AWS region"
+  type        = string
+  default     = "us-east-2"
+}

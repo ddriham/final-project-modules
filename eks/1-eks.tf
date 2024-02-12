@@ -36,3 +36,15 @@ resource "aws_eks_cluster" "this" {
 
   depends_on = [aws_iam_role_policy_attachment.eks]
 }
+
+resource "null_resource" "update_kubeconfig" {
+  depends_on = [aws_eks_cluster.this]
+
+  triggers = {
+    cluster_name = aws_eks_cluster.this.name
+  }
+
+  provisioner "local-exec" {
+    command = "aws eks update-kubeconfig --region us-east-2 --name ${var.env}-ddriham"
+  }
+}

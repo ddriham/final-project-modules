@@ -33,3 +33,9 @@ variable "public_subnet_tags" {
   description = "Private subnet tags."
   type        = map(any)
 }
+
+variable "region" {
+  description = "AWS region"
+  type        = string
+  default     = "us-east-2"
+}
