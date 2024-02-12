@@ -48,9 +48,13 @@ resource "aws_iam_policy" "eks_policy" {
 resource "aws_iam_role_policy_attachment" "eks_policy_attachment" {
   role       = aws_iam_role.nodes.name
   policy_arn = aws_iam_policy.eks_policy.arn
+
+  depends_on = [aws_iam_role.nodes]
 }
 
 resource "aws_iam_role_policy_attachment" "ebs_csi_driver_policy_attachment" {
   role       = aws_iam_role.nodes.name
-  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
+  policy_arn = "arn:aws:iam::aws:policy/AmazonEBSCSIDriverPolicy"
+
+  depends_on = [aws_iam_role.nodes]
 }

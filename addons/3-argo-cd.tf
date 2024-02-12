@@ -1,5 +1,5 @@
 resource "helm_release" "argo_cd" {
-  depends_on = [kubernetes_namespace.argocd]
+  depends_on = [kubernetes_namespace.argocd, helm_release.nginx_ingress]
   count = var.enable_argo_cd ? 1 : 0
 
   name       = "argo-cd"
