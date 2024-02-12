@@ -22,36 +22,6 @@ resource "aws_iam_role_policy_attachment" "eks" {
   role       = aws_iam_role.eks.name
 }
 
-resource "aws_iam_policy" "eks_policy" {
-  name   = "${var.env}-${var.eks_name}-eks-policy"
-  policy = jsonencode({
-    Version = "2012-10-17",
-    Statement = [
-      {
-        Effect = "Allow",
-        Action = [
-          "ec2:CreateVolume",
-          "ec2:DeleteVolume",
-          "ec2:AttachVolume",
-          "ec2:DetachVolume",
-          "ec2:DescribeVolumes",
-          "ec2:DescribeVolumeStatus",
-          "ec2:CreateSnapshot",
-          "ec2:DeleteSnapshot",
-          "ec2:DescribeSnapshots",
-          "ec2:ModifyVolume"
-        ],
-        Resource = "*"
-      }
-    ]
-  })
-}
-
-resource "aws_iam_role_policy_attachment" "eks_policy_attachment" {
-  role       = aws_iam_role.eks.name
-  policy_arn = aws_iam_policy.eks_policy.arn
-}
-
 resource "aws_eks_cluster" "this" {
   name     = "${var.env}-${var.eks_name}"
   version  = var.eks_version
