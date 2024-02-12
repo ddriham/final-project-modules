@@ -52,12 +52,6 @@ resource "aws_iam_role_policy_attachment" "eks_policy_attachment" {
   policy_arn = aws_iam_policy.eks_policy.arn
 }
 
-
-resource "aws_iam_role_policy_attachment" "ebs_full_access" {
-  role       = aws_iam_role.eks.name  
-  policy_arn = "arn:aws:iam::aws:policy/AmazonEBSFullAccess"
-}
-
 resource "aws_eks_cluster" "this" {
   name     = "${var.env}-${var.eks_name}"
   version  = var.eks_version
