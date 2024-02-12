@@ -19,3 +19,15 @@ resource "helm_release" "ebs_csi_driver" {
     value = "true"
   }
 }
+
+resource "kubernetes_storage_class" "ebs_csi_driver_storage_class" {
+  metadata {
+    name = "ebs-csi-driver"
+    annotations = {
+      "storageclass.kubernetes.io/is-default-class" = "true"
+    }
+  }
+
+  storage_provisioner    = "ebs.csi.aws.com"
+  allow_volume_expansion = true
+}
