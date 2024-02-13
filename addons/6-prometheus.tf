@@ -10,3 +10,7 @@ resource "helm_release" "prometheus" {
     value = "LoadBalancer"
   }
 }
+
+
+# kubectl patch pvc prometheus-server -n monitoring -p '{"metadata":{"finalizers":null}}'
+# kubectl patch pvc storage-prometheus-alertmanager-0 -n monitoring -p '{"metadata":{"finalizers":null}}'
