@@ -19,3 +19,8 @@ variable "argo_cd_ingress_host" {
   description = "Hostname for Argo CD server ingress"
   type        = string
 }
+
+variable "eks_name" {
+  description = "The name of the EKS cluster"
+  type        = string
+}
