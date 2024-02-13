@@ -10,8 +10,8 @@ resource "kubernetes_ingress" "grafana" {
       http {
         path {
           backend {
-            service_name = kubernetes_service.grafana.metadata[0].name
-            service_port = kubernetes_service.grafana.spec[0].port[0].port
+            service_name = data.kubernetes_service.grafana.metadata[0].name
+            service_port = data.kubernetes_service.grafana.spec[0].port[0].port
           }
         }
       }
@@ -31,8 +31,8 @@ resource "kubernetes_ingress" "prometheus" {
       http {
         path {
           backend {
-            service_name = kubernetes_service.prometheus.metadata[0].name
-            service_port = kubernetes_service.prometheus.spec[0].port[0].port
+            service_name = data.kubernetes_service.prometheus.metadata[0].name
+            service_port = data.kubernetes_service.prometheus.spec[0].port[0].port
           }
         }
       }
@@ -52,8 +52,8 @@ resource "kubernetes_ingress" "argocd" {
       http {
         path {
           backend {
-            service_name = kubernetes_service.argocd.metadata[0].name
-            service_port = kubernetes_service.argocd.spec[0].port[0].port
+            service_name = data.kubernetes_service.argocd.metadata[0].name
+            service_port = data.kubernetes_service.argocd.spec[0].port[0].port
           }
         }
       }
