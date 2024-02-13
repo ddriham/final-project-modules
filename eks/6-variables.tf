@@ -26,7 +26,7 @@ variable "node_iam_policies" {
     2 = "arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy"
     3 = "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly"
     4 = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
-    5 = "arn:aws:iam::aws:policy/AmazonEBSCSIDriverPolicy"
+    5 = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
     6 = "arn:aws:iam::aws:policy/AmazonEC2FullAccess"
   }
 }
