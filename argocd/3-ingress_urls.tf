@@ -70,7 +70,7 @@ data "kubernetes_service" "grafana" {
 
 data "kubernetes_service" "prometheus" {
   metadata {
-    name      = "prometheus"
+    name      = "prometheus-server"
     namespace = "monitoring"
   }
 }
