@@ -9,21 +9,6 @@ resource "helm_release" "prometheus" {
     name  = "server.service.type"
     value = "LoadBalancer"
   }
-
-  set {
-    name  = "pvcProtectionEnabled"
-    value = false
-  }
-
-  set {
-    name  = "alertmanager.persistentVolume.claimDeletePolicy"
-    value = "Delete"
-  }
-
-  set {
-    name  = "alertmanagerFiles.alertmanager.persistentVolume.claimDeletePolicy"
-    value = "Delete"
-  }
 }
 
 # kubectl patch pvc prometheus-server -n monitoring -p '{"metadata":{"finalizers":null}}'
