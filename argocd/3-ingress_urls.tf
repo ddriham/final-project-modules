@@ -1,4 +1,4 @@
-resource "kubernetes_ingress" "grafana" {
+resource "kubernetes_ingress_v1" "grafana" {
   metadata {
     name      = "grafana-ingress"
     namespace = "monitoring"
@@ -10,9 +10,15 @@ resource "kubernetes_ingress" "grafana" {
       host = "${var.eks_name}.grafana.local"
       http {
         path {
+          path = "/"
+          path_type = "Prefix"
           backend {
-            service_name = data.kubernetes_service.grafana.metadata.0.name
-            service_port = data.kubernetes_service.grafana.spec.0.port.0.port
+            service {
+              name = data.kubernetes_service.grafana.metadata.0.name
+              port {
+                number = data.kubernetes_service.grafana.spec.0.port.0.port
+              }
+            }
           }
         }
       }
@@ -20,7 +26,7 @@ resource "kubernetes_ingress" "grafana" {
   }
 }
 
-resource "kubernetes_ingress" "prometheus" {
+resource "kubernetes_ingress_v1" "prometheus" {
   metadata {
     name      = "prometheus-ingress"
     namespace = "monitoring"
@@ -32,9 +38,15 @@ resource "kubernetes_ingress" "prometheus" {
       host = "${var.eks_name}.prometheus.local"
       http {
         path {
+          path = "/"
+          path_type = "Prefix"
           backend {
-            service_name = data.kubernetes_service.prometheus.metadata.0.name
-            service_port = data.kubernetes_service.prometheus.spec.0.port.0.port
+            service {
+              name = data.kubernetes_service.prometheus.metadata.0.name
+              port {
+                number = data.kubernetes_service.prometheus.spec.0.port.0.port
+              }
+            }
           }
         }
       }
@@ -42,10 +54,9 @@ resource "kubernetes_ingress" "prometheus" {
   }
 }
 
-resource "kubernetes_ingress" "argocd" {
+resource "kubernetes_ingress_v1" "argocd" {
   depends_on = [
-    helm_release.argo_cd,
-    kubernetes_ingress.argocd
+    helm_release.argo_cd
   ]
   metadata {
     name      = "argocd-ingress"
@@ -58,9 +69,15 @@ resource "kubernetes_ingress" "argocd" {
       host = "${var.eks_name}.argo.local"
       http {
         path {
+          path = "/"
+          path_type = "Prefix"
           backend {
-            service_name = data.kubernetes_service.argocd.metadata.0.name
-            service_port = data.kubernetes_service.argocd.spec.0.port.0.port
+            service {
+              name = data.kubernetes_service.argocd.metadata.0.name
+              port {
+                number = data.kubernetes_service.argocd.spec.0.port.0.port
+              }
+            }
           }
         }
       }
@@ -77,7 +94,7 @@ data "kubernetes_service" "grafana" {
 
 data "kubernetes_service" "prometheus" {
   metadata {
-    name      = "prometheus-server" 
+    name      = "prometheus-server"
     namespace = "monitoring"
   }
 }
