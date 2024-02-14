@@ -5,6 +5,7 @@ resource "kubernetes_ingress" "grafana" {
   }
 
   spec {
+    ingress_class_name = "nginx"
     rule {
       host = "${var.eks_name}.grafana.local"
       http {
@@ -26,6 +27,7 @@ resource "kubernetes_ingress" "prometheus" {
   }
 
   spec {
+    ingress_class_name = "nginx"
     rule {
       host = "${var.eks_name}.prometheus.local"
       http {
@@ -41,12 +43,17 @@ resource "kubernetes_ingress" "prometheus" {
 }
 
 resource "kubernetes_ingress" "argocd" {
+  depends_on = [
+    helm_release.argo_cd,
+    kubernetes_ingress.argocd
+  ]
   metadata {
     name      = "argocd-ingress"
     namespace = "argocd"
   }
 
   spec {
+    ingress_class_name = "nginx"
     rule {
       host = "${var.eks_name}.argo.local"
       http {
