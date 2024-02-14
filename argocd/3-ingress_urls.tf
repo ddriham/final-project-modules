@@ -77,7 +77,7 @@ data "kubernetes_service" "prometheus" {
 
 data "kubernetes_service" "argocd" {
   metadata {
-    name      = "argocd-server"
+    name      = "argo-cd-argocd-server"
     namespace = "argocd"
   }
 }
