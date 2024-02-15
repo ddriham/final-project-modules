@@ -1,5 +1,10 @@
 variable "eks_name" {
-  description = "The name of the EKS cluster"
+  description = "Name of the cluster."
+  type        = string
+}
+
+variable "env" {
+  description = "Environment name."
   type        = string
 }
 
@@ -31,8 +36,19 @@ variable "grafana_url" {
   type        = string
 }
 
-variable "env" {
-  description = "The environment for the deployment"
+variable "enable_cluster_autoscaler" {
+  description = "Determines whether to deploy cluster autoscaler"
+  type        = bool
+  default     = false
+}
+
+variable "cluster_autoscaler_helm_verion" {
+  description = "Cluster Autoscaler Helm verion"
+  type        = string
+}
+
+variable "openid_provider_arn" {
+  description = "IAM Openid Connect Provider ARN"
   type        = string
 }
 
