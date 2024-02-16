@@ -36,24 +36,3 @@ resource "helm_release" "grafana" {
   }
 
 }
-
-resource "kubernetes_service" "grafana" {
-  metadata {
-    name      = "grafana"
-    namespace = var.monitoring_namespace
-  }
-
-  spec {
-    selector = {
-      app = "grafana"
-    }
-
-    port {
-      name        = "http"
-      port        = 80
-      target_port = "3000"
-    }
-
-    type = "LoadBalancer"
-  }
-}
