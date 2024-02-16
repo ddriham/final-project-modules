@@ -7,6 +7,7 @@ resource "helm_release" "argo_cd" {
   chart      = "argo-cd"
   version    = var.argo_cd_helm_version
   namespace  = var.argo_cd_namespace
+  values     = [file("values/argocd.yaml")]
 
   set {
     name  = "server.service.type"
@@ -22,6 +23,4 @@ resource "helm_release" "argo_cd" {
     name  = "server.ingress.hosts[0]"
     value = var.argo_cd_ingress_host
   }
-
-  
 }
